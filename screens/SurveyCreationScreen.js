@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../components/Header'; // Import the Header component
 import { View, Text, TextInput, Button, ScrollView, TouchableOpacity, Alert } from 'react-native';
 
 const SurveyCreationScreen = ({ navigation }) => {
@@ -41,7 +42,7 @@ const SurveyCreationScreen = ({ navigation }) => {
 
     try {
       // Make API call to create survey
-      const response = await fetch('http://192.168.1.170:5000/surveys', {
+      const response = await fetch('http://192.168.43.56:5000/surveys', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,6 +66,9 @@ const SurveyCreationScreen = ({ navigation }) => {
   };
 
   return (
+    <View style={{ flex: 1 }}>
+      {/* Render the Header at the top */}
+      <Header title="Create Survey" />
     <ScrollView style={{ padding: 20 }}>
       <Text style={{ fontSize: 18, marginBottom: 10 }}>Survey Name</Text>
       <TextInput
@@ -147,6 +151,7 @@ const SurveyCreationScreen = ({ navigation }) => {
       {/* Button to submit the survey */}
       <Button title="Create Survey" onPress={handleCreateSurvey} />
     </ScrollView>
+    </View>
   );
 };
 

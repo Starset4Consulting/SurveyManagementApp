@@ -1,5 +1,6 @@
 // screens/RegisterScreen.js
 import React, { useState } from 'react';
+import Header from '../components/Header'; // Import the Header component
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 
 const RegisterScreen = ({ navigation }) => {
@@ -9,7 +10,7 @@ const RegisterScreen = ({ navigation }) => {
 
   const handleRegister = async () => {
     // Store the user data or send it to the backend
-    const response = await fetch('http://192.168.1.170:5000/register', {
+    const response = await fetch('http://192.168.43.56:5000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,6 +27,9 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   return (
+    <View style={{ flex: 1 }}>
+      {/* Render the header component */}
+      <Header />
     <View style={{ padding: 20 }}>
       <Text style={{ fontSize: 24, textAlign: 'center', marginBottom: 20 }}>Register</Text>
 
@@ -66,6 +70,7 @@ const RegisterScreen = ({ navigation }) => {
       >
         <Text style={{ color: 'white' }}>Back to Login</Text>
       </TouchableOpacity>
+    </View>
     </View>
   );
 };

@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import * as Location from 'expo-location';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen';
@@ -27,5 +28,24 @@ const App = () => {
     </NavigationContainer>
   );
 };
+ // Function to fetch location and permissions
+  const getLocation = async () => {
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission Denied', 'Location permissions are required to take surveys.');
+        return;
+      }
+
+      let locationData = await Location.getCurrentPositionAsync({});
+      setLocation({
+        latitude: locationData.coords.latitude,
+        longitude: locationData.coords.longitude,
+      });
+
+    } catch (error) {
+      console.error('Error fetching location:', error);
+    }
+  };
 
 export default App;

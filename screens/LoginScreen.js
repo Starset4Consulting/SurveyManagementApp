@@ -1,5 +1,6 @@
 // screens/LoginScreen.js
 import React, { useState } from 'react';
+import Header from '../components/Header'; // Import the Header component
 import { View, Text, TextInput, Button, Alert, TouchableOpacity } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
@@ -8,7 +9,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     // Use the backend URL
-    const apiUrl = 'http://192.168.1.170:5000/login'; // Replace <YOUR_IP_ADDRESS> with your actual backend IP
+    const apiUrl = 'http://192.168.43.56:5000/login'; // Replace <YOUR_IP_ADDRESS> with your actual backend IP
 
     // Check if it's admin login
     if (username === 'Admin' && password === 'password@123') {
@@ -26,11 +27,13 @@ const LoginScreen = ({ navigation }) => {
         body: JSON.stringify({ username, password }),
       });
 
+      
+
       const data = await response.json();
 
       if (data.success) {
         // Navigate to the user dashboard if login is successful
-        navigation.navigate('SurveyList');
+        navigation.navigate('SurveyList', { userId: data.user_id });
       } else {
         // Alert for invalid username or password
         Alert.alert('Login Failed', data.message || 'Invalid username or password');
@@ -41,7 +44,12 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
+  
+
   return (
+    <View style={{ flex: 1 }}>
+      {/* Render the header component */}
+      <Header />
     <View style={{ padding: 20 }}>
       <Text style={{ fontSize: 24, textAlign: 'center', marginBottom: 20 }}>Login</Text>
 
@@ -75,6 +83,8 @@ const LoginScreen = ({ navigation }) => {
         <Text style={{ color: 'white' }}>Register</Text>
       </TouchableOpacity>
     </View>
+    </View>
+    
   );
 };
 

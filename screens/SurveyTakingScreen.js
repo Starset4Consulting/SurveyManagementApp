@@ -18,7 +18,7 @@ const SurveyTakingScreen = ({ route }) => {
   useEffect(() => {
     const fetchSurvey = async () => {
       try {
-        const response = await fetch(`http://192.168.43.56:5000/surveys/${surveyId}`);
+        const response = await fetch(`http://192.168.2.11:5000/surveys/${surveyId}`);
         const data = await response.json();
 
         console.log('Fetched survey data:', data); // Debugging: Check if data is being fetched correctly
@@ -80,7 +80,7 @@ const SurveyTakingScreen = ({ route }) => {
     }
 
     try {
-      const response = await fetch('http://192.168.43.56:5000/submit_survey', {
+      const response = await fetch('http://192.168.2.11:5000/submit_survey', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

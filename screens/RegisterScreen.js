@@ -10,7 +10,7 @@ const RegisterScreen = ({ navigation }) => {
 
   const handleRegister = async () => {
     // Store the user data or send it to the backend
-    const response = await fetch('http://192.168.43.56:5000/register', {
+    const response = await fetch('http://192.168.2.11:5000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

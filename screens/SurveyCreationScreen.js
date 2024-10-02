@@ -42,7 +42,7 @@ const SurveyCreationScreen = ({ navigation }) => {
 
     try {
       // Make API call to create survey
-      const response = await fetch('http://192.168.43.56:5000/surveys', {
+      const response = await fetch('http://192.168.2.11:5000/surveys', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
